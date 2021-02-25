@@ -6,7 +6,7 @@ Project tests interlok-kafka features
 
 This project is very simple and contains two channels with one workflow each.
 
-The first workflow has a polling trigger that produces a message every 10 seconds and publish it to a Kfka topic.
+The first workflow has a polling trigger that produces a message every 10 seconds and publish it to a Kafka topic.
 
 The second workflow is listening on the topic and copy the message on the file system.
 
