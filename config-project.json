@@ -1,0 +1,23 @@
+{
+  "name" : "kafka",
+  "variableSets" : {
+    "default" : { }
+  },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"kafka-to-fs\"]/workflow-list/standard-workflow[unique-id=\"kafka-to-fs\"]/consumer/topics" : "${kafkaTopic}",
+    "/adapter/channel-list/channel[unique-id=\"to-kafka\"]/workflow-list/standard-workflow[unique-id=\"to-kafka\"]/producer/topic" : "${kafkaTopic}",
+    "/adapter/channel-list/channel[unique-id=\"to-kafka\"]/produce-connection/config-builder/bootstrap-servers" : "${kafkaServer}",
+    "/adapter/channel-list/channel[unique-id=\"kafka-to-fs\"]/consume-connection/config-builder/bootstrap-servers" : "${kafkaServer}",
+    "/adapter/channel-list/channel[unique-id=\"kafka-to-fs\"]/consume-connection/config-builder/group-id" : "${kafkaGroup}",
+    "/adapter/channel-list/channel[unique-id=\"to-kafka\"]/produce-connection/config-builder/group-id" : "${kafkaGroup}",
+    "/adapter/channel-list/channel[unique-id=\"kafka-to-fs\"]/workflow-list/standard-workflow[unique-id=\"kafka-to-fs\"]/producer/base-directory-url" : "${fsDir}"
+  },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : { },
+  "additionalFiles" : {
+    "bootstrap.properties" : "bootstrap.properties",
+    "log4j2.xml" : "log4j2.xml"
+  },
+  "optionalComponentsInUse" : [ "com.adaptris:interlok-kafka:4.0-SNAPSHOT" ],
+  "structured" : true
+}

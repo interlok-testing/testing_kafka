@@ -1,0 +1,26 @@
+plugins {
+  // https://github.com/nemerosa/versioning
+  id 'net.nemerosa.versioning' version '2.14.0'
+}
+
+ext {
+  interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/build.gradle"
+  interlokVersion = '4.0-SNAPSHOT'
+  // Include the WAR file since by default it is excluded.
+  includeWar='true'
+}
+
+allprojects {
+  apply from: "${interlokParentGradle}"
+  // specify the version of the configuration.
+  version=versioning.info.full
+}
+
+
+dependencies {
+  interlokRuntime ("com.adaptris:interlok-kafka:$interlokVersion") { changing=true }
+  
+  interlokJavadocs group: "com.adaptris", name: "interlok-kafka", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+  
+  interlokTestRuntime ("com.adaptris:interlok-service-tester:$interlokVersion") { changing=true }
+}
