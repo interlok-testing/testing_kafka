@@ -1,5 +1,8 @@
 # Kafka Testing
 
+[![license](https://img.shields.io/github/license/interlok-testing/testing_kafka.svg)](https://github.com/interlok-testing/testing_kafka/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_kafka/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_kafka/actions/workflows/gradle-build.yml)
+
 Project tests interlok-kafka features
 
 ## What it does
@@ -13,15 +16,17 @@ The second workflow is listening on the topic and copy the message on the file s
 ```mermaid
 graph LR
   subgraph Kafka To FS
+    direction LR
     KB2[Kafka Broker] --> K_C(Kafka Consumer)
     K_C --> SC2(Service Collection)
     SC2 --> FS_P(FS Producer)
-    FS_P --> FS[File System]
   end
-  subgraph To Kafka
+  FS_P --> FS[File System]
+  subgraph To ZKafka
+    direction LR
     PT_C[Polling Trigger] --> SC1(Service Collection)
     SC1 --> K_P(Kafka Producer)
-	K_P --> KB1(Kafka Broker)
+    K_P --> KB1(Kafka Broker)
   end
 
   style PT_C fill:#FF6C6C
