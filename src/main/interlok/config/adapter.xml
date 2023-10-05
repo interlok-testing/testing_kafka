@@ -56,7 +56,6 @@
             <record-key>interlok</record-key>
             <topic>${kafkaTopic}</topic>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>to-kafka</unique-id>
         </standard-workflow>
       </workflow-list>
@@ -92,7 +91,6 @@
             </filename-creator>
             <base-directory-url>${fsDir}</base-directory-url>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>kafka-to-fs</unique-id>
         </standard-workflow>
       </workflow-list>
