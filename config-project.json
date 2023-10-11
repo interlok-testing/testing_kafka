@@ -18,6 +18,6 @@
     "bootstrap.properties" : "bootstrap.properties",
     "log4j2.xml" : "log4j2.xml"
   },
-  "optionalComponentsInUse" : [ "com.adaptris:interlok-kafka:4.0-SNAPSHOT" ],
+  "optionalComponentsInUse" : [ "com.adaptris:interlok-kafka:5.0-SNAPSHOT" ],
   "structured" : true
 }
