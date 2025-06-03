@@ -1,6 +1,12 @@
 version: '2'
 
 services:
+  interlok:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      JAVA_OPTS:
   zookeeper:
     image: 'docker.io/bitnami/zookeeper:3-debian-10'
     ports:
