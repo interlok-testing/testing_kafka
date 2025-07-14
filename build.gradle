@@ -1,17 +1,21 @@
 plugins {
   // https://github.com/nemerosa/versioning
-  id 'net.nemerosa.versioning' version '2.14.0'
+  id 'net.nemerosa.versioning' version '3.1.0'
 }
 
 ext {
-  interlokParentGradle = "https://raw.githubusercontent.com/adaptris/interlok-build-parent/main/v5/build.gradle"
+  testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
+//  testingCommonGradle = "../testing_common/common.gradle"
+  interlokTestingVersion = "0.1"
   interlokVersion = '5.0-SNAPSHOT'
+  buildEnv = 'dev'
   // Include the WAR file since by default it is excluded.
   includeWar='true'
+  restAssuredVersion = "5.5.0"
 }
 
 allprojects {
-  apply from: "${interlokParentGradle}"
+  apply from: "${testingCommonGradle}"
   // specify the version of the configuration.
   version=versioning.info.full
 }
@@ -23,4 +27,9 @@ dependencies {
   interlokJavadocs group: "com.adaptris", name: "interlok-kafka", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   
   interlokTestRuntime ("com.adaptris:interlok-service-tester:$interlokVersion") { changing=true }
+
+  testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
+  testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+  testImplementation "io.rest-assured:json-path:$restAssuredVersion"
+  testImplementation "org.apache.kafka:kafka-clients:3.8.0"
 }
